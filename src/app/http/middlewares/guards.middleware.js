@@ -1,4 +1,28 @@
+/*
+
 var jwt = require("jsonwebtoken");
+
+module.exports.authorize = (permissionsArray) => {
+    return (req, res, next) => {
+        let allowed = false; //this will go over the below rules and if any one pases it will pass (e.g admin or isOwner)
+
+        //JWT Decode and Validate 
+
+        //Acceptable Values: IsOwner
+        //Admin
+        //Client
+        //Investor
+        //Authenticated
+
+        if(false) {
+            next(new Error(err.details[0].message));
+        } else {
+            next();
+        }
+    
+    }
+}
+
 
 //Validate JWT Default (not sure how we will do that it has to excute once and then excutes the rest)
 // We could keep it non-dry simple for now and just call ValidateJWT everytime we will do authorization
@@ -9,7 +33,6 @@ var jwt = require("jsonwebtoken");
     //Then we could just match the userId in the url request with the id in the jwt
 // Role based (Admin, Client, Investor)
 // Authenticated
-// Unauthenticated
 // It could be just one middleware that gets passed all the above options 
 // and then it validates the token and then runs a switch but I think Unauth should be seperate middleware
 // and this solution we won't have to dry nothing
@@ -40,7 +63,9 @@ module.exports =  function (req, res, next) {
     catch (error) {
         return res.status(400).send({ message: error.message });
     }
-    }
+}
   
 
 
+
+*/

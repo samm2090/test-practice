@@ -1,8 +1,10 @@
-const config = require("config");
+const config = require('config');
 const logger = require('./logger');
 
-module.exports = function() {
-  if (!config.get("jwtPrivateKey")) {
-    console.log("FATAL ERROR : jwtPrivateKey not set");
-  }
-};
+try {
+  config.get('jwt-secret')
+}
+catch (ex) {
+  logger.error(ex.message);
+  throw (ex)
+}

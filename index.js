@@ -11,11 +11,18 @@ const morganBody = require('morgan-body');
 startServer();
 
 async function startServer() {
+
+    process.on('unhandledRejection', error => {
+        // Prints "unhandledRejection woops!"
+        console.log('unhandledRejection', error.message);
+        
+      });
+      
+
     app.use(helmet());
     app.use(cors({ origin: 'localhost'}));
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
     //app.use(morgan('combined'));
     morganBody(app);
 
@@ -28,10 +35,11 @@ async function startServer() {
     app.use((err, req, res, next) => {
         if(process.env.NODE_ENV === 'production') {
             const logId = 'to be implemented';
-            logger.error(err, { scope: 'central error handler', subscope: '-' });
+            logger.error(err.message, { scope: 'central error handler', subscope: '-', error_stack: err.stack });
+            
             return res.status(500).send("500 - LogID " + logId);
         }
-        logger.error(err, { scope: 'central error handler', subscope: '-' });
+        logger.error(err.message, { scope: 'central error handler', subscope: '-' });
         res.status(500).send(err.stack);
     });
 
