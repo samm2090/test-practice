@@ -6,37 +6,16 @@ const UserSchema = new Schema({
   username:{
     type:String
   },
-  firstName: {
-    type: String
-  },
-  fatherLastName: {
-    type: String
-  },
-  motherLastName: {
-    type: String
-  },
-  gender: {
-    type: String
-  },
   email: {
     type: String
   },
-  mobileNumber: {
-    type: String
-  },
   ruc: {
-    type: String
-  },
-  businessName: {
     type: String
   },
   password: {
     type: String
   },
   role: {
-    type: String
-  },
-  department: {
     type: String
   },
   isApproved: {
