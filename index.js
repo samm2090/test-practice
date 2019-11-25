@@ -1,5 +1,5 @@
-require('./src/startup/config');
-const logger = require('./src/startup/logger');
+require('./src/app/http/startup/config');
+const logger = require('./src/app/http/startup/logger');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -19,8 +19,8 @@ async function startServer() {
     //app.use(morgan('combined'));
     morganBody(app);
 
-    require('./src/startup/db.js');
-    require('./src/startup/routes.js')(app);
+    require('./src/app/http/startup/db');
+    require('./src/app/http/startup/routes')(app);
     
     app.use((req, res) => {
         res.status(404).send('404');

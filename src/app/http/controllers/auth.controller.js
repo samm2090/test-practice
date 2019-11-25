@@ -2,61 +2,44 @@ var express = require("express");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const { User, RoleEnum } = require("../models/user.model");
+const { User, RoleEnum } = require("../../data/models/user.model");
+const userActions = require('../../business/actions/user.actions');
+const sharedRules = require('../../business/rules/shared.rules');
+/*
 const {
   adminLoginValidation,
   clientLoginValidation,
   investorLoginValidation,
   investorRegisterValidation,
   clientRegisterValidation
-} = require("../validators/auth.validator");
-var auth = require("../middleware/auth");
+} = require("../../validators/auth.validator");
+*/
+var auth = require("../middlewares/authorize.middleware");
 const Joi = require("joi");
 
-router.post("/", async (req, res) => {
-  //Accepts role, loginId (ruc/email/username), password
-  //STEPS
-  //ACTION: Find User by LoginID
-  //RULE: User Must Exist
-  //ACTION: Compare Password Hash
-  //RULE: Password Must Be Matching
-  //ACTION: Create Auth Token
-  //RETURN 201 Created
 
+module.exports.createAuth = () => {
+  //Call auth service to create auth (the service should have the logic should have the logic)
+}
+
+//Accepts role, loginId (ruc/email/username), password
+router.post("/", async (req, res, next) => {
   try {
-    const result = Joi.validate(req.body, adminLoginValidation);
-    if (result.error) {
-      return res.status(400).send(result.error.details[0].message);
-    }
+    let user, passwordMatching, authToken;
 
-    var user = await User.findOne({
-      username: req.body.username.toLowerCase()
+    user = await userActions.findUserByLoginId(req.body.role, req.body.loginId);
+    sharedRules.mustExist(user);
+    passwordMatching = userActions.compareHashPassword(req.body.password, user.password);
+    sharedRules.mustBeTrue(passwordMatching);
+    authToken = userActions.generateAuthToken(user.id, user.name, user.role);
+
+    res.json(201, {
+      message: "Authentication created",
+      authToken: authToken
     });
-
-    if (!user) return res.status(404).send("Invalid Username or Password.");
-
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-
-    if (validPassword) {
-      return res.send({
-        token: jwt.sign(
-          {
-            _id: user._id,
-            email: user.email.toLowerCase(),
-            name: user.firstName + user.fatherLastName + user.motherLastName,
-            role: RoleEnum.Admin
-          },
-          "Secure code  to generate token"
-        )
-      });
-    } else {
-      return res.status(404).send("Invalid Username or Password.");
-    }
-  } catch (error) {
-    return res.status(400).send(error.message);
+  }
+  catch(ex) {
+    next(ex);
   }
 });
 
@@ -254,5 +237,3 @@ router.post("/investor/register", async (req, res) => {
     return res.status(400).send(error.message);
   }
 });
-
-module.exports = router;
