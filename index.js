@@ -14,8 +14,8 @@ async function startServer() {
 
     process.on('unhandledRejection', error => {
         // Prints "unhandledRejection woops!"
-        console.log('unhandledRejection', error.message);
-        console.log(Object.keys(error));
+        console.log(`unhandledRejection (${error.code})`, error.message);
+        console.log(error);
         
       });
       

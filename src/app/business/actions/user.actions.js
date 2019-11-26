@@ -2,15 +2,14 @@ const logger = require('../../http/startup/logger');
 const { User } = require('../../data/models/user.model');
 
 module.exports.findUserByLoginIdTypeAndRole = async (role, loginIdType, loginId) => {
-    logger.debug(`Try to lookup user via ${loginIdType} : ${loginId} and role : ${role}`);
+    logger.debug(`Looking up a/an \`${role}\` with \`${loginIdType}\` \`${loginId}\``);
     const user = await User.findOne({[loginIdType] : loginId, role: role});
-    logger.debug(`User ${user.name} found`);
 
     return user;
 };
 
 module.exports.determineLoginIdType = (role) => {
-    logger.debug(`Determining loginId type for role: ${ role }`)
+    logger.debug(`Determining loginId type for \`${ role }\` role`)
     let loginIdType;
 
     switch (role) {
@@ -27,6 +26,6 @@ module.exports.determineLoginIdType = (role) => {
             throw new Error(`Invalid role: ${ role }`);
     }
 
-    logger.debug(`LoginId Type is: ${ loginIdType }`);
+    logger.debug(`LoginId Type is: \`${ loginIdType }\``);
     return loginIdType;
 };

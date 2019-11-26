@@ -2,7 +2,7 @@ const config = require('config');
 const logger = require('./logger');
 
 try {
-  config.get('jwt-secret')
+  config.get('signing-secret')
 }
 catch (ex) {
   logger.error(ex.message);
