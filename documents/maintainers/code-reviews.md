@@ -1,0 +1,1 @@
+Code Reviews vs Code Qualit: They are more like a checklist and code-quality could be one of the items on the checklist

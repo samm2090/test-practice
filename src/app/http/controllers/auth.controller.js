@@ -7,7 +7,7 @@ module.exports.createAuth = async (req, res, next) => {
   try {
     const authToken = await authService.createAuth(loginId, password, role);
     res
-    .status(200)
+    .status(201)
     .send({ auth_token: authToken });
     
   } catch(ex) {
