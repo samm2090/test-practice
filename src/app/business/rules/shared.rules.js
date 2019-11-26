@@ -1,6 +1,13 @@
 //MUST EXIST
 module.exports.mustExist = (value) => {
-    throw Error('User doesn\'t exist')
+    if(value) {
+        return true;
+    } else {
+        let userDoesntExisitError = new Error('User doesn\'t exist');
+        userDoesntExisitError.isOperational = true;
+        throw userDoesntExisitError    
+    }
+    
 };
 module.exports.mustBeEqualToHash = (value) => {
     

@@ -1,23 +1,15 @@
-module.exports.createAuth = async (username, password, role) => {
+const userActions = require('../actions/user.actions');
+const sharedRules = require('../rules/shared.rules');
 
-    //new Promise(() => { throw new Error('exception!'); });
-    
-  try {
-    let user, passwordMatching, authToken;
+module.exports.createAuth = async (loginId, password, role) => {
+        let user, passwordMatching, loginIdType, authToken;
 
-    user = await userActions.findUserByLoginId(req.body.role, req.body.loginId);
-    sharedRules.mustExist(user);
-    passwordMatching = userActions.compareHashPassword(req.body.password, user.password);
-    sharedRules.mustBeTrue(passwordMatching);
-    authToken = userActions.generateAuthToken(user.id, user.name, user.role);
+        loginIdType = userActions.determineLoginIdType(role);
+        user = await userActions.findUserByLoginIdTypeAndRole(role, loginIdType, loginId);
+        sharedRules.mustExist(user);
+        passwordMatching = encryptionActions.verifyStringAgainstHash(password, user.password);
+        sharedRules.mustBeTrue(passwordMatching);
+        authToken = authActions.generateAuthToken(user.id, user.name, user.role);
 
-    res.json(201, {
-      message: "Authentication created",
-      authToken: authToken
-    });
-  }
-  catch(ex) {
-    next(ex);
-  }
-
+        return authToken;
 }

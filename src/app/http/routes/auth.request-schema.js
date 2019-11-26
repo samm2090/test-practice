@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 module.exports.authSchema = Joi.object().keys({
-  username: Joi.string()
+  loginId: Joi.string()
   .required()
   .when('role', { is: 'admin', then: 
     Joi.string()

@@ -15,6 +15,7 @@ async function startServer() {
     process.on('unhandledRejection', error => {
         // Prints "unhandledRejection woops!"
         console.log('unhandledRejection', error.message);
+        console.log(Object.keys(error));
         
       });
       
@@ -24,7 +25,7 @@ async function startServer() {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     //app.use(morgan('combined'));
-    morganBody(app);
+    //morganBody(app);
 
     require('./src/app/http/startup/db');
     require('./src/app/http/startup/routes')(app);
@@ -37,10 +38,30 @@ async function startServer() {
             const logId = 'to be implemented';
             logger.error(err.message, { scope: 'central error handler', subscope: '-', error_stack: err.stack });
             
-            return res.status(500).send("500 - LogID " + logId);
+            if(err.isOperational) {
+                return res.status(200).send({
+                    internal_error: {
+                        status: err.status || 500,
+                        message: `500 - LogID " + ${logId}`
+                    }
+                });
+            } else {
+                return res.status(err.status || 500).send("500 - LogID " + logId);
+            }
         }
         logger.error(err.message, { scope: 'central error handler', subscope: '-' });
-        res.status(500).send(err.stack);
+
+        if(err.isOperational) {
+            res.status(200).send({
+                internal_error: {
+                    status: err.status,
+                    stack: err.stack
+                }
+            });
+        } else {
+            res.status(err.status || 500).send(err.stack);
+        }
+
     });
 
     const port = process.env.PORT || 83;

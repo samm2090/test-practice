@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const RoleEnum = { Admin: "admin", Client: "client", Investor: "investor" };
+//const RoleEnum = { Admin: "admin", Client: "client", Investor: "investor" };
 
 const UserSchema = new Schema({
+  name:{
+    type:String
+  },  
   username:{
     type:String
   },
@@ -35,5 +38,4 @@ const UserSchema = new Schema({
   timestamps: true,
 });
 
-var User = mongoose.model("User", UserSchema);
-module.exports = { User, RoleEnum };
+module.exports.User = mongoose.model("User", UserSchema);
