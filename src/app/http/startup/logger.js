@@ -10,7 +10,7 @@ const logger = createLogger({
   ]
 });
 
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testing') {
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testingasd') {
   const myFormat = printf(({ level, message, scope, subscope, timestamp }) => {
     return `${timestamp} [${scope} > ${subscope}] ${level}: ${message}`;
   });

@@ -9,9 +9,9 @@ module.exports.findUserByLoginIdTypeAndRole = async (role, loginIdType, loginId)
 };
 
 module.exports.determineLoginIdType = (role) => {
-    logger.debug(`Determining loginId type for \`${ role }\` role`)
+    logger.error(`Determining loginId type for \`${ role }\` role`)
     let loginIdType;
-
+console.log('-------role ', role)
     switch (role) {
         case 'admin':
             loginIdType = 'username';

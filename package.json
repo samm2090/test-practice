@@ -7,13 +7,13 @@
     "test-e2e": "NODE_ENV=testing _mocha e2e/**/*.e2e-spec.js --exit",
     "test-e2e-watch": "NODE_ENV=testing nodemon --exec 'npm test-e2e'",
     "test-e2e-watch-win": "set NODE_ENV=testing && nodemon --exec 'npm test-e2e'",
-    "test-e2e-coverage": "nyc --reporter=html --reporter=text npm test-e2e",
-
-    "test": "NODE_ENV=testing _mocha e2e/**/*.e2e-spec.js --exit",
-    "test-watch": "NODE_ENV=testing nodemon --exec 'npm test-e2e'",
-    "test-watch-win": "set NODE_ENV=testing && nodemon --exec 'npm test-e2e'",
-    "test-coverage": "nyc --reporter=html --reporter=text npm test-e2e"
-
+    "test-e2e-coverage": "nyc --reporter=html --reporter=text npm run test-e2e",
+    "test": "NODE_ENV=testing _mocha **/**/*.unit-test.js --exit",
+    "test-watch": "NODE_ENV=testing nodemon --exec 'npm test'",
+    "test-watch-win": "set NODE_ENV=testing && nodemon --exec 'npm test'",
+    "test-coverage": "nyc --reporter=html --reporter=text npm test",
+    "test-full": "NODE_ENV=testing _mocha **/**/*.test.js e2e/**/*.e2e-spec.js --exit",
+    "test-full-coverage": "nyc --reporter=html --reporter=text npm run test-full"
   },
   "author": "kashef.tech",
   "license": "UNLICENSED",
@@ -28,13 +28,15 @@
     "jsonwebtoken": "8.5.1",
     "mongoose": "5.7.12",
     "morgan": "1.9.1",
-    "morgan-body": "^2.4.8",
+    "morgan-body": "2.4.8",
     "winston": "3.2.1"
   },
   "devDependencies": {
     "chai": "4.2.0",
     "mocha": "6.2.2",
+    "node-mocks-http": "1.8.0",
     "nyc": "14.1.1",
+    "sinon": "7.5.0",
     "supertest": "4.0.2"
   },
   "nyc": {

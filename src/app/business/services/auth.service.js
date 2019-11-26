@@ -4,6 +4,7 @@ const encryptionActions = require('../actions/encryption.actions');
 const tokenActions = require('../actions/token.actions');
 
 module.exports.createAuth = async (loginId, password, role) => {
+        console.log("SHITTTT")
         const loginIdType = userActions.determineLoginIdType(role);
         const user = await userActions.findUserByLoginIdTypeAndRole(role, loginIdType, loginId);
         sharedRules.mustExist('user', 'name', user);
