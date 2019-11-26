@@ -9,10 +9,10 @@ module.exports.createAuth = async (req, res, next) => {
     res
     .status(201)
     .send({ auth_token: authToken });
-    
-  } catch(ex) {
-    logger.error(ex.message)
-    next(ex)
+
+  } catch(err) {
+    logger.warn(err.message, { scope: 'Auth.Controller', subscope: 'CreateAuth' });
+    next(err)
   }
 
 }

@@ -29,7 +29,12 @@ node_modules
 .DS_Store
 
 # =========================
-# Documentation
+# Packages
 # =========================
+
 # ApiDocjs
 apidoc
+
+# nyc
+.nyc_output
+coverage

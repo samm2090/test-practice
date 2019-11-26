@@ -4,3 +4,6 @@ AS) General Documentation Conventions:
 * 2) Any text wrapped in a square brackets means a place holder, so if you see `[title]-FS[issue-number]`.
 * 3) names and placeholders will always be hyphened.
 * 4) In any template (point 1), a text outside a placeholder is always case sensitive.
+
+Documentation should be reviewed on bi-monthly basis
+Maintainers and business stackholders should report any outdated documents

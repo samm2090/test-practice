@@ -11,8 +11,8 @@ const logger = createLogger({
 });
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testing') {
-  const myFormat = printf(({ level, message, scope, timestamp }) => {
-    return `${timestamp} [${scope}] ${level}: ${message}`;
+  const myFormat = printf(({ level, message, scope, subscope, timestamp }) => {
+    return `${timestamp} [${scope} > ${subscope}] ${level}: ${message}`;
   });
 
   logger.add(new transports.Console({

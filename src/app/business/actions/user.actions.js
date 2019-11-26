@@ -1,5 +1,5 @@
 const logger = require('../../http/startup/logger');
-const { User } = require('../../data/models/user.model');
+const { User } = require('../models/user.model');
 
 module.exports.findUserByLoginIdTypeAndRole = async (role, loginIdType, loginId) => {
     logger.debug(`Looking up a/an \`${role}\` with \`${loginIdType}\` \`${loginId}\``);

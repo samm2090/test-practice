@@ -1,3 +1,9 @@
+//ENTRY POINT self-invoking async function
+
+//Init Utils (config, logger)
+//Init App
+//Maybe DB?
+
 require('./src/app/http/startup/config');
 const logger = require('./src/app/http/startup/logger');
 const express = require('express');
@@ -5,20 +11,16 @@ const app = express();
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const morganBody = require('morgan-body');
 
 startServer();
 
 async function startServer() {
-
     process.on('unhandledRejection', error => {
         // Prints "unhandledRejection woops!"
         console.log(`unhandledRejection (${error.code})`, error.message);
         console.log(error);
         
-      });
-      
+    });
 
     app.use(helmet());
     app.use(cors({ origin: 'localhost'}));
@@ -66,7 +68,26 @@ async function startServer() {
 
     const port = process.env.PORT || 83;
     app.listen(port, ()=>{
+        /*--------------------------------------*/
+        /* let output = '';
+        const originalStdoutWrite = process.stdout.write.bind(process.stdout);
+        process.stdout.write = (chunk, encoding, callback) => {
+          if (typeof chunk === 'string') {
+            output += chunk;
+          }
+          return originalStdoutWrite(chunk, encoding, callback);
+        };*/
+        /*--------------------------------------*/
+        
         logger.info("API is ready", { scope: 'startup', subscope: 'server' })
+        
+        /*--------------------------------------*/
+        /*
+        process.stdout.write = originalStdoutWrite;
+        console.log('GOTCHA!', output);
+        */
+        /*--------------------------------------*/
+    
     });
 }
 
