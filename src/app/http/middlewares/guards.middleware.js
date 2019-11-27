@@ -1,3 +1,44 @@
+const jsonwebtoken = require("jsonwebtoken");
+const config = require('config');
+
+
+module.exports = (permissionsArray) => {
+    return (req, res, next) => {
+        if(!res.locals.decoded_user) throw new Error('AUTH TOKEN REQUIRED');
+        next();
+
+        let allowed = false; //this will go over the below rules and if any one pases it will pass (e.g admin or isOwner)
+
+        //JWT Decode and Validate 
+
+        //Acceptable Values: IsOwner
+        //Admin
+        //Client
+        //Investor
+        //Authenticated
+
+        if(false) {
+            next(new Error(err.details[0].message));
+        } else {
+            next();
+        }
+    
+    }
+}
+
+function asd (req, res, next) {
+
+    //Get Auth AuthHeader
+    //RULE: MUST EXIST (If not throw ex 401)
+    //Get Bearer Token
+    //RULE: MUST EXIST (If not throw ex 401)
+    //Verify Token
+    //RULE: MUST BE TRUE
+    //ADD Decoded data to res.locals.user
+
+}
+
+
 /*
 
 var jwt = require("jsonwebtoken");

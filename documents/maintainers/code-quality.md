@@ -34,3 +34,8 @@ B) Code Quality (Used by Devs to ensure a perfect QPass and Used by Reviewer for
 * Use   timestamps: true when creating models to get automatic createdAt and updatedAt
 * Make sure logs are not saving passwords (we could use an interceptor to finds any password or secret or api key or think of anything that could go wrong and replace it with a *removed* .. we could create npm packages as wrappers around error handlers and loggers that already knows what are all the possible words/values/keys/properties/vars to blacklist
 * Add to our quality and check list, make sure logs are not logging any sensitive data
+
+
+# Commit/PR Quality (possibly move to a different doc or to version control)
+* During rebase make sure you input the correct Author name and Email (be consistent and never change it)
+* 

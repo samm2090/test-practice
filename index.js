@@ -29,8 +29,9 @@ async function startServer() {
     //app.use(morgan('combined'));
     //morganBody(app);
 
+    const extractToken = require('./src/app/http/middlewares/exctract-token.middleware');
     require('./src/app/http/startup/db');
-    require('./src/app/http/startup/routes')(app);
+    app.use('/api', extractToken, require('./src/app/http/startup/routes'));
     
     app.use((req, res) => {
         res.status(404).send('404');

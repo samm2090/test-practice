@@ -8,3 +8,10 @@
 9. commit flow: commit meaningful code and only include related code, tag them with either test or implement
 10. rebase at the end and squash test commits with test and squash sub-tasks as per your plan (you can update it along the way) 
 11. push and PR (feel free to push and open a draft PR at any of the previous steps if you were asked to, or if you need support)
+
+
+# Are you working on a bug?
+
+# Are you working on a brand new feature?
+
+# Are you working on enhancing a feature?

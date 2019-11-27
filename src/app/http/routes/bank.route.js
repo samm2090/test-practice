@@ -1,6 +1,6 @@
 var express = require("express");
 const router = express.Router();
-const { createAuth } = require('../controllers/auth.controller');
+const { createBankAccount } = require('../controllers/bank.controller');
 const { authSchema } = require("./auth.request-schema");
 const { validateBody } = require('../middlewares/request-validation.middleware');
 
@@ -11,8 +11,8 @@ const { validateBody } = require('../middlewares/request-validation.middleware')
  */
 router.post(
   '/',
-  validateBody(authSchema),
-  createAuth
+  //validateBody(authSchema),
+  createBankAccount
 );
 
 module.exports = router
