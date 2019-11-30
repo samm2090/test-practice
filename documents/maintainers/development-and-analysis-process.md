@@ -15,3 +15,4 @@
 # Are you working on a brand new feature?
 
 # Are you working on enhancing a feature?
+* A) Actions: Don't modify the tests for the actions, rather update the action and make sure the test covers all cases because you never know which part of the code you might be affecting, also even better write a new function in actions rather than 

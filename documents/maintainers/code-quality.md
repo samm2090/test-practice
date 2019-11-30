@@ -39,3 +39,7 @@ B) Code Quality (Used by Devs to ensure a perfect QPass and Used by Reviewer for
 # Commit/PR Quality (possibly move to a different doc or to version control)
 * During rebase make sure you input the correct Author name and Email (be consistent and never change it)
 * 
+
+* Naming conventions 
+* should use spec for unit tests, integration-spec for integration tests and e2e-spec for end to end.
+* spec is short for specification which is a synonum for test, but it promotes BDD
