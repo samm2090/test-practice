@@ -13,7 +13,7 @@ process
         console.error(err, 'Uncaught Exception thrown');
         //process.exit(1);
     });
-    
+
 loggerLoader();
 databaseLoader();
 expressLoader(app);

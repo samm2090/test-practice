@@ -1,13 +1,9 @@
+const errorController = require('../../request-layer/controllers/error.controller');
+const notFoundController = require('../../request-layer/controllers/notFound.controller');
+
 module.exports = (app) => {
-    app.use((req, res) => {
-        errorNotFound = new Error('404');
-        errorNotFound.status = 404;
-        throw errorNotFound;
-    });
-    app.use((err, req, res, next) => {
-        console.log('err', err.status)
-        res.status(err.status || 500).send(err.message)
-    });
+    app.use(notFoundController);
+    app.use(errorController);
 }
 
 /*
