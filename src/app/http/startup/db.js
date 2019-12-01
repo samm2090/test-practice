@@ -2,6 +2,7 @@ const logger = require('./logger');
 const mongoose = require("mongoose");
 
 mongoose.connect(
+    //protocol://ip:port/uri << util formatUrl
     "mongodb://localhost:27017/finsmart-dev", 
     {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
     function (err) {

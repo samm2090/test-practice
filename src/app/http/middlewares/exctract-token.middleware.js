@@ -1,3 +1,5 @@
+/*
+
 const jsonwebtoken = require("jsonwebtoken");
 const config = require('config');
 const logger = require('../startup/logger');
@@ -15,3 +17,5 @@ module.exports =  function (req, res, next) {
         next();
     }
 }
+
+*/

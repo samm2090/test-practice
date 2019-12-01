@@ -19,5 +19,3 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testingas
     format: combine(colorize(), timestamp(), myFormat)
   }));
 }
-
-module.exports = logger;
