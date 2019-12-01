@@ -1,6 +1,16 @@
-app.use((req, res) => {
-    res.status(404).send('404');
-});
+module.exports = (app) => {
+    app.use((req, res) => {
+        errorNotFound = new Error('404');
+        errorNotFound.status = 404;
+        throw errorNotFound;
+    });
+    app.use((err, req, res, next) => {
+        console.log('err', err.status)
+        res.status(err.status || 500).send(err.message)
+    });
+}
+
+/*
 app.use((err, req, res, next) => {
     if(process.env.NODE_ENV === 'production') {
         const logId = 'to be implemented';
@@ -32,3 +42,4 @@ app.use((err, req, res, next) => {
 
 });
 
+*/

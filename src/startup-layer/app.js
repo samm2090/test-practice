@@ -3,7 +3,7 @@ const databaseLoader = require('./loaders/database.loader');
 const loggerLoader = require('./loaders/logger.loader');
 const expressLoader = require('./loaders/express.loader');
 const routesLoader = require('./loaders/routes.loader');
-//const errorHandlersLoader = require('./loaders/error-handlers.loader');
+const errorHandlersLoader = require('./loaders/error-handlers.loader');
 
 process
     .on('unhandledRejection', (reason, p) => {
@@ -11,14 +11,14 @@ process
     })
     .on('uncaughtException', err => {
         console.error(err, 'Uncaught Exception thrown');
-        process.exit(1);
+        //process.exit(1);
     });
     
 loggerLoader();
 databaseLoader();
 expressLoader(app);
-//routesLoader();
-//errorHandlersLoader(app);
+routesLoader(app);
+errorHandlersLoader(app);
 
 module.exports = app;
 

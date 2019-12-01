@@ -1,5 +1,5 @@
 console.log(process.env.signing_secret)
-const app = require('./src/app');
+const app = require('./app');
 const logger = require('winston');
 const http = require('http');
 

@@ -2,9 +2,9 @@
   "name": "finsmart-api",
   "version": "3.0.0",
   "description": "Finsmart.pe backend application",
-  "main": "index.js",
+  "main": "src/startup-layer/server.js",
   "scripts": {
-    "start": "nodemon --exec node -r dotenv/config index.js",
+    "start": "nodemon --exec node -r dotenv/config src/startup-layer/server.js",
     "start:tdd": "",
     "test-e2e": "NODE_ENV=testing _mocha e2e/**/*.e2e-spec.js --exit",
     "test-e2e-watch": "NODE_ENV=testing nodemon --exec 'npm test-e2e'",

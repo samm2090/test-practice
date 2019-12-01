@@ -8,6 +8,6 @@ module.exports = (app) => {
     app.use(cors({ origin: 'localhost'}));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(morgan('combined'));
+    app.use(morgan('dev'));
     //morganBody(app);
 }
