@@ -1,4 +1,4 @@
-const logger = require('../../http/startup/logger');
+//const logger = require('../../http/startup/logger');
 const bcryptjs = require('bcryptjs');
 
 module.exports.stringAndHashMatch = async (value, hash, type) => {

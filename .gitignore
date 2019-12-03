@@ -9,7 +9,7 @@ node_modules
 *.log
 
 # Env (Only for development)
-.env
+*.env
 
 # =========================
 # IDE

@@ -1,11 +1,12 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 //const httpMocks = require('node-mocks-http');
-const logger = require('../../http/startup/logger');
+//const logger = require('../../http/startup/logger');
 
 const authService = require('./auth.service');
 
 describe('# User Service', () => {
+    console.log(process.env.SECURITY_SIGNING_KEY)
     describe('createAuth', () => {
         it.only("should return loginId type ruc for clients", async () => {
             const authToken = await authService.createAuth('admin', 'P@ssw0rd!', 'admin');

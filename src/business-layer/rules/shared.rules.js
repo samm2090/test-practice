@@ -1,4 +1,4 @@
-const logger = require('../../http/startup/logger');
+//const logger = require('../../http/startup/logger');
 
 module.exports.mustExist = (type, identifier, value) => {
     if(value) {

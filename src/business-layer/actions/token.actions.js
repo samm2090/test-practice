@@ -1,5 +1,5 @@
 const jsonwebtoken = require('jsonwebtoken');
-const logger = require('../../http/startup/logger');
+//const logger = require('../../http/startup/logger');
 const config = require('config');
 
 module.exports.generateSignedToken = (userId, userName, userRole) => {

@@ -9,7 +9,7 @@ module.exports = () => {
             if(err) {
                 logger.error(err, { scope: 'loaders', subscope: 'database' });
             } else {
-                logger.info("Database is ready", { scope: 'loaders', subscope: 'database' });
+                logger.verbose("Database is ready", { scope: 'loaders', subscope: 'database' });
             }
         }
     );    

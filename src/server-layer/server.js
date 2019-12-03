@@ -1,4 +1,3 @@
-console.log(process.env.signing_secret)
 const app = require('./app');
 const logger = require('winston');
 const http = require('http');
@@ -13,5 +12,5 @@ server.on('listening', onListening);
 function onListening() {
     const addr = server.address();
     const actualPort = addr.port;
-    logger.info(`Server is listening on port ${actualPort}`, { scope: 'loaders', subscope: 'server' });
+    logger.verbose(`Server is listening on port ${actualPort}`, { scope: 'loaders', subscope: 'server' });
 }
