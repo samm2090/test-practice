@@ -13,23 +13,16 @@ module.exports.createAuth = async (loginId, password, role) => {
                 { scope: 'services', subscope: 'auth', method: 'createAuth' }
         );
 
-        const loginIdType = sharedRules.mustBeTrue(
+        const loginIdType = sharedRules.cantBeEmpty(
                 userActions.determineLoginIdType(role), 
                 Errors.ROLE_DOESNT_EXIST.code);
-        const user = sharedRules.mustBeTrue(
+        const user = sharedRules.cantBeEmpty(
                 await userActions.findUserByLoginIdTypeAndRole(role, loginIdType, loginId), 
                 Errors.INVALID_CREDENTIALS.code);
-        sharedRules.mustBeTrue(
+        sharedRules.cantBeEmpty(
                 await await encryptionActions.stringAndHashMatch(password, user.password, 'password'), 
                 Errors.INVALID_CREDENTIALS.code);
-        
-        /*
-        sharedRules.mustExist('role', 'role', user);
-        sharedRules.mustExist('user', 'name', user);
-        const passwordMatching = await encryptionActions.stringAndHashMatch(password, user.password, 'password');
-        sharedRules.mustBeTrue(passwordMatching, 'password');
         const authToken = tokenActions.generateSignedToken(user._id, user.name, user.role);
 
         return authToken;
-        */
 }

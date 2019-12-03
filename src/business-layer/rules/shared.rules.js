@@ -1,6 +1,6 @@
 const logger = require('winston');
 
-module.exports.mustBeTrue = (value, errorCode) => {
+module.exports.cantBeEmpty = (value, errorCode) => {
     if(value) {
         return value;
     } else {
