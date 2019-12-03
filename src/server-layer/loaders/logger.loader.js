@@ -15,8 +15,8 @@ module.exports = () => {
     });
     
     if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testingasd') {
-        const myFormat = printf(({ level, message, scope, subscope, timestamp }) => {
-            return `${level}: ${message} - ${scope}:${subscope} @ ${getNerutalDateTime()}`;
+        const myFormat = printf(({ level, message, scope, subscope, method, timestamp }) => {
+            return `${level}: ${message} - ${scope}:${subscope}:${method} @ ${getNerutalDateTime()}`;
         });
 
         logger.add(new transports.Console({

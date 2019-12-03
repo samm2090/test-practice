@@ -1,6 +1,6 @@
 var express = require("express");
 const router = express.Router();
-const { createAuth } = require('../controllers/auth.controller');
+const authController = require('../controllers/auth.controller');
 const { authSchema } = require("./auth.request-schema");
 const { validateBody } = require('../middlewares/request-validation.middleware');
 
@@ -12,7 +12,7 @@ const { validateBody } = require('../middlewares/request-validation.middleware')
 router.post(
   '/',
   validateBody(authSchema),
-  createAuth
+  authController.createAuth
 );
 
 module.exports = router

@@ -1,5 +1,5 @@
 const authService = require('../../business/services/auth.service');
-const logger = require('../../http/startup/logger');
+const logger = require('winston');
 
 module.exports.createBankAccount = async (req, res, next) => {
 

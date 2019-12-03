@@ -1,24 +1,20 @@
-const authService = require('../../business/services/auth.service');
-const logger = require('../../http/startup/logger');
+const authService = require('../../business-layer/services/auth.service');
+const logger = require('winston');
 
 module.exports.createAuth = async (req, res, next) => {
   const { loginId, password, role} = req.body;
-  console.log("XXXXXXX", 1)
+  logger.debug(
+    `loginId: ${loginId}, password: data-private, role: ${role}`, 
+    { scope: 'controllers', subscope: 'auth', method: 'createAuth' }
+  );
 
   try {
-    const authToken = await authService.createAuth(loginId, password, role);
-    console.log("XXXXXXX", authToken)
-    
+    const authToken = await authService.createAuth(loginId, password, role);    
     res.status(201).send({ auth_token: authToken });
-    console.log("XXXXXXX", 2)
-
   } catch(err) {
-    console.log("XXXXXXX", 3)
+    //console.log("ERORROROROROR")
     //console.log(err)
-    logger.warn(err.message, { scope: 'Auth.Controller', subscope: 'CreateAuth' });
+    //logger.warn(err.message, { scope: 'Auth.Controller', subscope: 'CreateAuth' });
     next(err)
   }
-  console.log("XXXXXXX", 4)
-  console.log("--------------")
-
 }
