@@ -1,7 +1,7 @@
 const winston = require('winston');
 const { createLogger, format, transports} = winston;
 const { combine, timestamp, label, printf, colorize, prettyPrint } = format;
-const { getNerutalDateTime } = require ('../../util/date.util');
+const { getNerutalDateTime } = require ('../../shared-layer/util/date.util');
 
 module.exports = () => {
 

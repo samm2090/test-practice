@@ -1,6 +1,6 @@
 const logger = require('winston');
-const Errors = require('../../enums/error.enum');
-const ErrorTypes = require('../../enums/errorType.enum');
+const Errors = require('../../shared-layer/enums/error.enum');
+const ErrorTypes = require('../../shared-layer/enums/errorType.enum');
 
 module.exports.globalErrorMiddleware = (err, req, res, next) => {
         //this could be a utilit as well! but are we able to pass code as a param e['code']?

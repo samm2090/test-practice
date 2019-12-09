@@ -1,11 +1,11 @@
 const logger = require('winston');
 
 const userActions = require('../actions/user.actions');
-const sharedRules = require('../rules/shared.rules');
+const sharedRules = require('../../shared-layer/rules/shared.rules');
 const encryptionActions = require('../actions/encryption.actions');
 const tokenActions = require('../actions/token.actions');
-const Errors = require('../../enums/error.enum');
-const ErrorTypes = require('../../enums/errorType.enum');
+const Errors = require('../../shared-layer/enums/error.enum');
+const ErrorTypes = require('../../shared-layer/enums/errorType.enum');
 
 module.exports.createAuth = async (loginId, password, role) => {
         logger.debug(

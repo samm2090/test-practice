@@ -4,7 +4,11 @@ module.exports.cantBeEmpty = (value, errorCode) => {
     if(value) {
         return value;
     } else {
-        throw new Error(errorCode)
+        if (errorCode) {
+            throw new Error(errorCode)
+        } else {
+            return false;
+        }
     }
 }
 
